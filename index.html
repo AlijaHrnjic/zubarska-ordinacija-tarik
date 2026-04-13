@@ -117,6 +117,7 @@
             --white:          #ffffff;
             --red:            #ef4444;
             --gold:           #f59e0b;
+            --gold-light:     rgba(245,158,11,0.12);
             --shadow-sm:      0 2px 8px rgba(0,0,0,0.06);
             --shadow:         0 4px 24px rgba(74,120,86,0.10);
             --shadow-lg:      0 12px 48px rgba(0,0,0,0.14);
@@ -124,6 +125,10 @@
             --radius:         14px;
             --radius-lg:      22px;
             --transition:     0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .arr {
+            color: var(--gold)
         }
 
         /* ════════════════════════════════════════════
@@ -278,6 +283,12 @@
             cursor: pointer;
             white-space: nowrap;
         }
+        .btn-gold {
+            background: var(--gold);
+            color: white;
+            border-color: var(--gold);
+        }
+        
         .btn-primary {
             background: var(--primary);
             color: white;
@@ -295,8 +306,8 @@
             border-color: var(--dark);
         }
         .btn-dark:hover {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: var(--gold);
+            border-color: var(--gold);
             transform: translateY(-2px);
         }
         .btn-outline {
@@ -318,7 +329,7 @@
             padding: 0;
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--gold);
             cursor: pointer;
             transition: var(--transition);
         }
@@ -650,8 +661,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--primary-light);
-            color: var(--primary);
+            background: var(--gold-light);
+            color: var(--gold);
             padding: 7px 16px;
             border-radius: 100px;
             font-size: 0.8rem;
@@ -660,7 +671,7 @@
         }
         .pulse-dot {
             width: 7px; height: 7px;
-            background: var(--primary);
+            background: var(--gold);
             border-radius: 50%;
             animation: pulse-anim 2s ease-in-out infinite;
         }
@@ -676,7 +687,7 @@
         }
 
         .hero-title { margin-bottom: 20px; }
-        .hero-title em { font-style: normal; color: var(--primary); }
+        .hero-title em { font-style: normal; color: var(--gold); }
         .hero-desc { font-size: 1.07rem; margin-bottom: 32px; max-width: 490px; }
 
         .hero-actions {
@@ -758,7 +769,9 @@
         /* ════════════════════════════════════════════
            SERVICES
         ════════════════════════════════════════════ */
-        #usluge { background: var(--bg-light); }
+        #usluge { background:  radial-gradient(ellipse at 20% 20%, #4a8a62 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, #1a3d2a 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, #2D5A3D 0%, #1e4a30 100%); }
 
         .services-header {
             display: grid;
@@ -771,6 +784,7 @@
             font-size: 1rem;
             margin-top: 24px;
             margin-bottom: 40px;
+            color: var(--gold);
         }
 
         .services-grid {
@@ -863,7 +877,7 @@
             transition: var(--transition);
         }
         .about-feat:hover .about-feat-icon {
-            background: var(--primary);
+            background: var(--gold);
             color: white;
         }
         .about-feat-body h4 {
@@ -895,7 +909,7 @@
         }
         .about-badge-1-icon {
             width: 50px; height: 50px;
-            background: var(--primary);
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
             border-radius: 13px;
             display: flex;
             align-items: center;
@@ -914,7 +928,7 @@
         .about-badge-2 {
             position: absolute;
             bottom: 44px; right: -24px;
-            background: var(--primary);
+            background: linear-gradient(135deg, #f7b733 0%, #c87000 100%);
             color: white;
             border-radius: 16px;
             padding: 16px 22px;
@@ -1104,7 +1118,7 @@
         .pl-price {
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--gold);
             white-space: nowrap;
         }
 
@@ -1599,7 +1613,7 @@
                 <div class="hero-actions">
                     <a href="#kontakt" class="btn btn-dark">
                         <i class="fas fa-calendar-check" aria-hidden="true"></i>
-                        Zakaži pregled
+                        Zakažite pregled
                     </a>
                     <a href="#usluge" class="btn-ghost">
                         Naše usluge
@@ -1608,11 +1622,11 @@
                 </div>
                 <div class="hero-stats">
                     <div>
-                        <div class="stat-num" data-count="12">12<span style="color:var(--primary)">+</span></div>
+                        <div class="stat-num" data-count="12">12<span style="color:var(--gold)">+</span></div>
                         <div class="stat-lbl">Godina iskustva</div>
                     </div>
                     <div>
-                        <div class="stat-num" data-count="3500" data-thousands=".">3.500<span style="color:var(--primary)">+</span></div>
+                        <div class="stat-num" data-count="3500" data-thousands=".">3.500<span style="color:var(--gold)">+</span></div>
                         <div class="stat-lbl">Zadovoljnih pacijenata</div>
                     </div>
                     <div>
@@ -1654,13 +1668,13 @@
     <div class="container">
         <div class="services-header">
             <div class="reveal">
-                <h2>Usluge koje pružamo</h2>
+                <h2 style="color:var(--white)">Usluge koje pružamo</h2>
             </div>
             <p class="services-intro reveal d1">
                 U Dental Ordinaciji pružamo sveobuhvatnu stomatološku skrb s naglaskom na sigurnost, udobnost i dugoročne rezultate. Ispod možete pronaći naše najčešće usluge &mdash; od opće stomatologije do estetike i oralne kirurgije.
             </p>
         </div>
-        <p class="reveal" style="color:var(--text-light);font-size:0.9rem;margin-bottom:40px;">
+        <p class="reveal" style="color:var(--gold);font-size:0.9rem;margin-bottom:40px;">
             Svaka usluga obuhvata konsultaciju, detaljan pregled i plan tretmana koji prilagođavamo svakom pacijentu.
         </p>
 
@@ -1793,8 +1807,8 @@
             </div>
             <div class="reveal d2" style="flex-shrink:0;text-align:right;">
                 <p style="font-size:0.84rem;color:#6b7280;margin-bottom:14px;">Profesionalni tim u vašoj ordinaciji</p>
-                <a href="#kontakt" class="btn btn-outline" style="color:#7fbf98;border-color:rgba(127,191,152,0.3);">
-                    Zakaži konsultaciju
+                <a href="#kontakt" class="btn btn-outline" style="color:var(--gold);border-color:var(--gold);">
+                    Zakažite konsultaciju
                 </a>
             </div>
         </div>
@@ -1871,10 +1885,6 @@
 <section id="cjenovnik" aria-label="Cjenovnik usluga">
     <div class="container">
         <h2 class="reveal">Cjenovnik usluga</h2>
-        <p class="reveal d1">
-            Prikazane cijene su okvirne i služe kao orijentacija. Za točnu cijenu tretmana molimo zakažite pregled ili nas kontaktirajte.
-        </p>
-
         <div class="price-grid">
 
             <div class="price-card reveal d1">
