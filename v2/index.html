@@ -94,10 +94,62 @@
   .btn-dark{background:var(--green-800);color:var(--cream)}
   .btn-dark:hover{background:var(--green-700)}
 
-  .burger{display:none;width:40px;height:40px;border-radius:10px;align-items:center;justify-content:center}
-  .burger span{display:block;width:20px;height:2px;background:currentColor;position:relative}
-  .burger span::before,.burger span::after{content:"";position:absolute;left:0;right:0;height:2px;background:currentColor}
+  .burger{display:none;width:40px;height:40px;border-radius:10px;align-items:center;justify-content:center;color:var(--cream);transition:color .35s ease}
+  .nav.scrolled .burger{color:var(--green-900)}
+  .burger span{display:block;width:20px;height:2px;background:currentColor;position:relative;transition:background .25s ease}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0;right:0;height:2px;background:currentColor;transition:transform .3s ease,top .3s ease}
   .burger span::before{top:-6px}.burger span::after{top:6px}
+  body.drawer-open .burger span{background:transparent}
+  body.drawer-open .burger span::before{top:0;transform:rotate(45deg)}
+  body.drawer-open .burger span::after{top:0;transform:rotate(-45deg)}
+
+  /* ----------- MOBILE DRAWER ----------- */
+  #drawer-overlay{
+    position:fixed;inset:0;background:rgba(13,31,21,.45);
+    z-index:90;opacity:0;pointer-events:none;transition:opacity .35s ease;
+  }
+  #mobile-drawer{
+    position:fixed;top:0;right:0;width:80vw;max-width:340px;
+    height:100vh;height:100dvh;z-index:100;
+    background:var(--paper);color:var(--green-900);
+    display:flex;flex-direction:column;
+    transform:translateX(100%);transition:transform .42s cubic-bezier(.4,0,.2,1);
+    box-shadow:-12px 0 40px -8px rgba(13,31,21,.25);
+  }
+  body.drawer-open{overflow:hidden}
+  body.drawer-open #mobile-drawer{transform:none}
+  body.drawer-open #drawer-overlay{opacity:1;pointer-events:auto}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px 22px;border-bottom:1px solid var(--line)}
+  .drawer-head .logo{color:var(--green-900)}
+  .drawer-close{
+    width:38px;height:38px;border-radius:50%;background:var(--cream);
+    display:grid;place-items:center;color:var(--green-900);
+  }
+  .drawer-phone{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 22px;border-bottom:1px solid var(--line);
+    color:var(--green-900);font-size:14.5px;font-weight:600;
+  }
+  .drawer-phone svg{color:var(--green-700);flex:0 0 auto}
+  .drawer-nav{list-style:none;padding:8px 10px;margin:0;flex:1;overflow-y:auto}
+  .drawer-nav li{margin:0;padding:0}
+  .drawer-nav a{
+    display:block;padding:10px 14px;border-radius:10px;
+    font-size:15.5px;font-weight:500;color:var(--green-900);
+    transition:background .2s ease,color .2s ease;
+  }
+  .drawer-nav a:hover{background:var(--green-100);color:var(--green-800)}
+  .drawer-social{
+    display:flex;gap:10px;
+    padding:18px 22px 26px;border-top:1px solid var(--line);
+  }
+  .drawer-social a{
+    width:38px;height:38px;border-radius:50%;
+    border:1px solid var(--line);
+    display:grid;place-items:center;color:var(--green-800);
+    transition:background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .drawer-social a:hover{background:var(--green-800);color:var(--yellow);border-color:var(--green-800)}
 
   /* ----------- HERO ----------- */
   .hero{
@@ -400,7 +452,7 @@
 
   /* ----------- MAP / CONTACT ----------- */
   .contact{background:var(--paper)}
-  .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:stretch}
+  .c-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:stretch}
   .map{
     position:relative;border-radius:24px;overflow:hidden;min-height:560px;
     box-shadow:var(--shadow-md);border:1px solid var(--line);
@@ -476,7 +528,21 @@
     .hero-meta .m b{font-size:26px}
     .c-card{padding:28px}
     .nav-cta .btn-primary{display:none}
+    .phone-pill{display:none}
     .f-bar{flex-direction:column;gap:10px}
+
+    /* About decorations were sized for desktop grid gap; on mobile pull them
+       inside about-media so they don't push past the viewport edge. */
+    .about-media .badge{top:8px;left:8px;width:118px;height:118px;font-size:15px;padding:14px}
+    .about-media .badge b{font-size:26px}
+    .about-media .sec{right:0;bottom:-26px;width:46%;border-width:6px}
+
+    /* 5 nowrap tabs don't fit in a 335px viewport pill — let them scroll
+       horizontally inside the pill instead of breaking out of .wrap. */
+    .price-toolbar{flex-direction:column;align-items:stretch;gap:14px}
+    .price-tabs{display:flex;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .price-tabs::-webkit-scrollbar{display:none}
+    .price-tabs button{flex:0 0 auto}
   }
 
   /* reveal */
@@ -508,10 +574,42 @@
         <span>+387 33 123 456</span>
       </a>
       <a href="#contact" class="btn btn-primary">Zakažite termin</a>
-      <button class="burger" aria-label="Menu"><span></span></button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-drawer"><span></span></button>
     </div>
   </div>
 </nav>
+
+<!-- =================== MOBILE DRAWER =================== -->
+<div id="drawer-overlay"></div>
+<div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigacija" aria-hidden="true">
+  <div class="drawer-head">
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 0-5 2-7 2s-3 2-3 5 1 6 3 9 3 4 4 4 1-2 2-5 2-3 3 0 1 5 2 5 3-1 4-4 2-6 2-9-1-5-3-5-3-2-7-2Z"/></svg>
+      </span>
+      <span class="logo-text">Verde<span class="dot">.</span></span>
+    </a>
+    <button class="drawer-close" id="drawer-close" aria-label="Zatvori">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <a href="tel:+38733123456" class="drawer-phone">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg>
+    +387 33 123 456
+  </a>
+  <ul class="drawer-nav">
+    <li><a href="#services">Usluge</a></li>
+    <li><a href="#about">O nama</a></li>
+    <li><a href="#pricing">Cjenovnik</a></li>
+    <li><a href="#team">Doktori</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <div class="drawer-social">
+    <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.4-2 2.1-2H17V2.1C16.6 2 15.5 2 14.3 2 11.8 2 10 3.5 10 6.3V10H7v4h3v8h3Z"/></svg></a>
+    <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 7.3a6 6 0 0 1-4-1.4v8.5a6.2 6.2 0 1 1-5.3-6.1v3a3.2 3.2 0 1 0 2.3 3.1V2h3a5.9 5.9 0 0 0 4 4.4v.9Z"/></svg></a>
+  </div>
+</div>
 
 <!-- =================== HERO =================== -->
 <header class="hero" id="top">
@@ -934,57 +1032,57 @@
         </div>
       </div>
 
-      <div class="c-card reveal">
-        <span class="kicker" style="color:var(--yellow-soft)">Zakažite termin</span>
-        <h3>Recite nam o vašem <em>osmijehu</em> — javljamo se u roku od sat vremena.</h3>
+<!--      <div class="c-card reveal">-->
+<!--        <span class="kicker" style="color:var(&#45;&#45;yellow-soft)">Zakažite termin</span>-->
+<!--        <h3>Recite nam o vašem <em>osmijehu</em> — javljamo se u roku od sat vremena.</h3>-->
 
-        <form class="form" onsubmit="event.preventDefault();this.querySelector('.submit').innerHTML='✓ Hvala — javljamo se uskoro'">
-          <div class="field"><label>Ime i prezime</label><input type="text" placeholder="Amina Muminović" required></div>
-          <div class="field"><label>Telefon</label><input type="tel" placeholder="+387 61 …" required></div>
-          <div class="field full"><label>Email</label><input type="email" placeholder="amina@email.com" required></div>
-          <div class="field"><label>Usluga</label>
-            <select>
-              <option>Pregled i čišćenje</option>
-              <option>Izbjeljivanje</option>
-              <option>Parodontologija / laser</option>
-              <option>Invisalign</option>
-              <option>Hitan slučaj</option>
-              <option>Ostalo</option>
-            </select>
-          </div>
-          <div class="field"><label>Željeni dan</label>
-            <select>
-              <option>Što prije</option>
-              <option>Ove sedmice</option>
-              <option>Sljedeće sedmice</option>
-              <option>Samo se raspitujem</option>
-            </select>
-          </div>
-          <div class="field full"><label>Napomena</label><textarea placeholder="Nivo bola, strah, osiguranje…"></textarea></div>
-          <button class="btn btn-primary submit full" type="submit">Zatraži termin
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </button>
-        </form>
+<!--        <form class="form" onsubmit="event.preventDefault();this.querySelector('.submit').innerHTML='✓ Hvala — javljamo se uskoro'">-->
+<!--          <div class="field"><label>Ime i prezime</label><input type="text" placeholder="Amina Muminović" required></div>-->
+<!--          <div class="field"><label>Telefon</label><input type="tel" placeholder="+387 61 …" required></div>-->
+<!--          <div class="field full"><label>Email</label><input type="email" placeholder="amina@email.com" required></div>-->
+<!--          <div class="field"><label>Usluga</label>-->
+<!--            <select>-->
+<!--              <option>Pregled i čišćenje</option>-->
+<!--              <option>Izbjeljivanje</option>-->
+<!--              <option>Parodontologija / laser</option>-->
+<!--              <option>Invisalign</option>-->
+<!--              <option>Hitan slučaj</option>-->
+<!--              <option>Ostalo</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="field"><label>Željeni dan</label>-->
+<!--            <select>-->
+<!--              <option>Što prije</option>-->
+<!--              <option>Ove sedmice</option>-->
+<!--              <option>Sljedeće sedmice</option>-->
+<!--              <option>Samo se raspitujem</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="field full"><label>Napomena</label><textarea placeholder="Nivo bola, strah, osiguranje…"></textarea></div>-->
+<!--          <button class="btn btn-primary submit full" type="submit">Zatraži termin-->
+<!--            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>-->
+<!--          </button>-->
+<!--        </form>-->
 
-        <div class="contact-info">
-          <div class="ci">
-            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg></div>
-            <div><b>+387 33 123 456</b>Pon–Sub · 8:00 – 20:00</div>
-          </div>
-          <div class="ci">
-            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></div>
-            <div><b>info@verde-dental.ba</b>Odgovor u roku od sat vremena</div>
-          </div>
-          <div class="ci">
-            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-12a7 7 0 0 1 14 0c0 5.7-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-            <div><b>Ferhadija 12 · Sarajevo</b>2 minute od Baščaršije</div>
-          </div>
-          <div class="ci">
-            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 2"/></svg></div>
-            <div><b>Nedjelja hitno: 10–14</b>Prvo nazovite glavni broj</div>
-          </div>
-        </div>
-      </div>
+<!--        <div class="contact-info">-->
+<!--          <div class="ci">-->
+<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg></div>-->
+<!--            <div><b>+387 33 123 456</b>Pon–Sub · 8:00 – 20:00</div>-->
+<!--          </div>-->
+<!--          <div class="ci">-->
+<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></div>-->
+<!--            <div><b>info@verde-dental.ba</b>Odgovor u roku od sat vremena</div>-->
+<!--          </div>-->
+<!--          <div class="ci">-->
+<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-12a7 7 0 0 1 14 0c0 5.7-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>-->
+<!--            <div><b>Ferhadija 12 · Sarajevo</b>2 minute od Baščaršije</div>-->
+<!--          </div>-->
+<!--          <div class="ci">-->
+<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 2"/></svg></div>-->
+<!--            <div><b>Nedjelja hitno: 10–14</b>Prvo nazovite glavni broj</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 </section>
@@ -1063,6 +1161,32 @@
         g.style.display = g.dataset.pane === cat ? '' : 'none';
       });
     });
+  });
+
+  // Mobile drawer
+  const burger    = document.getElementById('burger');
+  const drawer    = document.getElementById('mobile-drawer');
+  const overlay   = document.getElementById('drawer-overlay');
+  const closeBtn  = document.getElementById('drawer-close');
+
+  function openDrawer(){
+    document.body.classList.add('drawer-open');
+    burger.setAttribute('aria-expanded','true');
+    drawer.setAttribute('aria-hidden','false');
+  }
+  function closeDrawer(){
+    document.body.classList.remove('drawer-open');
+    burger.setAttribute('aria-expanded','false');
+    drawer.setAttribute('aria-hidden','true');
+  }
+  burger.addEventListener('click', () => {
+    document.body.classList.contains('drawer-open') ? closeDrawer() : openDrawer();
+  });
+  overlay.addEventListener('click', closeDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && document.body.classList.contains('drawer-open')) closeDrawer();
   });
 </script>
 </body>
