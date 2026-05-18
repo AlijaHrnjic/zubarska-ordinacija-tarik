@@ -79,10 +79,14 @@
   .nav ul a:hover::after{transform:scaleX(1)}
   .nav-cta{display:flex;align-items:center;gap:14px}
   .phone-pill{
-    display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;
-    color:rgba(255,255,255,.85);
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 20px;border-radius:999px;
+    background:var(--yellow);color:var(--green-900);
+    font-size:14.5px;font-weight:600;
+    box-shadow:0 8px 20px -8px rgba(245,197,66,.7);
+    transition:transform .2s ease, box-shadow .3s ease;
   }
-  .nav.scrolled .phone-pill{color:var(--green-900)}
+  .phone-pill:hover{transform:translateY(-1px);box-shadow:0 12px 28px -8px rgba(245,197,66,.85)}
   .btn{
     display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;
     font-weight:600;font-size:14.5px;transition:transform .2s ease, box-shadow .3s ease, background .3s ease;
@@ -154,7 +158,7 @@
   /* ----------- HERO ----------- */
   .hero{
     position:relative;overflow:hidden;color:var(--cream);
-    padding:150px 0 120px;
+    padding:130px 0 80px;
     background:
       radial-gradient(1200px 600px at 85% -10%, rgba(245,197,66,.22), transparent 60%),
       radial-gradient(900px 500px at 0% 110%, rgba(61,128,88,.35), transparent 60%),
@@ -176,6 +180,8 @@
   }
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 0 rgba(245,197,66,.7);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(245,197,66,.6)}70%{box-shadow:0 0 0 10px rgba(245,197,66,0)}100%{box-shadow:0 0 0 0 rgba(245,197,66,0)}}
+  .eyebrow.is-closed{background:rgba(91,106,96,.1);border-color:rgba(91,106,96,.28);color:var(--muted)}
+  .eyebrow.is-closed .pulse{background:var(--muted);box-shadow:none;animation:none}
   h1.hero-title{
     font-family:'Fraunces',serif;font-weight:500;
     font-size:clamp(44px,6.2vw,84px);line-height:1.02;letter-spacing:-.03em;
@@ -225,13 +231,13 @@
   .leaf.l2{bottom:-40px;left:-30px;width:180px;transform:rotate(-25deg)}
 
   /* ----------- SECTION SHARED ----------- */
-  section{padding:110px 0;position:relative}
-  .section-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:56px;flex-wrap:wrap}
+  section{padding:72px 0;position:relative}
+  .section-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:40px;flex-wrap:wrap}
   .kicker{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green-600);display:inline-flex;align-items:center;gap:10px}
   .kicker::before{content:"";width:26px;height:1px;background:var(--green-600)}
   .section-title{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,4.5vw,56px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 0;max-width:720px}
   .section-title em{font-style:italic;color:var(--green-700)}
-  .section-sub{max-width:420px;color:var(--muted);font-size:16.5px;line-height:1.6;margin:0}
+  .section-sub{max-width:380px;color:var(--muted);font-size:16.5px;line-height:1.6;margin:0}
 
   /* ----------- SERVICES ----------- */
   .services{background:var(--paper)}
@@ -239,7 +245,7 @@
   .svc{
     position:relative;padding:32px;border-radius:24px;background:var(--cream);
     border:1px solid var(--line);transition:transform .35s ease, background .35s ease, color .35s ease, box-shadow .35s ease;
-    min-height:300px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;overflow:hidden;
+    min-height:200px;display:flex;flex-direction:column;gap:20px;overflow:hidden;
   }
   .svc::after{
     content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--green-800),var(--green-700) 60%,var(--green-600));
@@ -254,7 +260,7 @@
   .svc-top{display:flex;justify-content:space-between;align-items:start}
   .svc-ico{width:52px;height:52px;border-radius:14px;background:var(--green-800);color:var(--yellow);display:grid;place-items:center;transition:all .35s ease}
   .svc-num{font-family:'Fraunces',serif;font-size:18px;color:var(--muted);transition:color .35s ease}
-  .svc h3{font-family:'Fraunces',serif;font-weight:500;font-size:26px;letter-spacing:-.015em;margin:0 0 6px;line-height:1.1}
+  .svc h3{font-family:'Fraunces',serif;font-weight:500;font-size:26px;letter-spacing:-.015em;margin:0 0 10px;line-height:1.1}
   .svc p{margin:0;font-size:14.5px;line-height:1.55;color:var(--muted);transition:color .35s ease}
   .svc:hover p{color:rgba(255,255,255,.82)}
   .svc-arrow{width:38px;height:38px;border-radius:50%;background:var(--green-800);color:var(--yellow);display:grid;place-items:center;transition:all .35s ease}
@@ -284,7 +290,7 @@
   .about-body .lede{font-size:17px;line-height:1.7;color:#334238;margin:26px 0 30px}
   .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:32px 0 36px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .about-stats .s b{font-family:'Fraunces',serif;font-size:42px;font-weight:500;color:var(--green-800);display:block;line-height:1}
-  .about-stats .s b .plus{color:var(--yellow-deep)}
+  .about-stats .s b .plus{color:var(--yellow-deep);display:inline;font-size:0.85em;margin-top:0;font-family:inherit}
   .about-stats .s span{font-size:13px;color:var(--muted);margin-top:6px;display:block}
   .about-list{list-style:none;padding:0;margin:0 0 32px;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
   .about-list li{display:flex;gap:10px;align-items:center;font-size:15px;color:#2a3a30}
@@ -371,9 +377,37 @@
   /* ----------- PRICING ----------- */
   .pricing{background:linear-gradient(180deg,var(--paper),var(--cream))}
   .price-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+  .price-tabs-wrap{position:relative}
   .price-tabs{display:inline-flex;background:var(--cream);padding:5px;border-radius:999px;border:1px solid var(--line)}
   .price-tabs button{padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:500;color:var(--muted);transition:all .25s ease;white-space:nowrap}
   .price-tabs button.on{background:var(--green-800);color:var(--cream);box-shadow:0 4px 12px -4px rgba(13,31,21,.4)}
+  .swipe-hint{
+    display:none;
+    position:absolute;top:0;bottom:0;right:0;width:96px;
+    pointer-events:none;
+    align-items:center;justify-content:flex-end;
+    padding-right:14px;
+    border-radius:0 999px 999px 0;
+    background:linear-gradient(to left, var(--cream) 38%, rgba(247,243,234,0));
+    transition:opacity .4s ease;
+  }
+  .swipe-hint.hide{opacity:0}
+  .swipe-finger{
+    width:40px;height:40px;
+    margin-top:20px;
+    transform-origin:50% 90%;
+    filter:drop-shadow(0 3px 6px rgba(13,31,21,.22));
+    animation:swipeMove 2s cubic-bezier(.5,.05,.3,1) infinite;
+  }
+  @keyframes swipeMove{
+    0%       {transform:translateX(10px) rotate(12deg);opacity:0}
+    18%      {transform:translateX(0) rotate(10deg);opacity:1}
+    60%      {transform:translateX(-46px) rotate(-18deg);opacity:1}
+    85%,100% {transform:translateX(-46px) rotate(-18deg);opacity:0}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .swipe-finger{animation:none}
+  }
   .price-note{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
   .price-note .chip{background:rgba(245,197,66,.18);color:var(--yellow-deep);padding:4px 10px;border-radius:999px;font-weight:600;font-size:12px}
 
@@ -458,13 +492,6 @@
     box-shadow:var(--shadow-md);border:1px solid var(--line);
   }
   .map iframe{width:100%;height:100%;border:0;display:block;filter:saturate(.9) contrast(.95)}
-  .map-pin{
-    position:absolute;top:50%;left:50%;transform:translate(-50%,-100%);
-    background:var(--green-800);color:var(--cream);padding:10px 14px;border-radius:14px;font-size:13px;
-    box-shadow:0 12px 30px -8px rgba(0,0,0,.4);display:flex;gap:10px;align-items:center;
-  }
-  .map-pin::after{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%) rotate(45deg);width:12px;height:12px;background:var(--green-800)}
-  .map-pin b{color:var(--yellow)}
   .c-card{
     background:linear-gradient(160deg,var(--green-900),var(--green-800) 60%,var(--green-700));
     border-radius:24px;padding:44px;color:var(--cream);position:relative;overflow:hidden;
@@ -497,8 +524,8 @@
   .ci b{display:block;color:#fff;font-family:'Fraunces',serif;font-size:15px;margin-bottom:2px}
 
   /* ----------- FOOTER ----------- */
-  footer{background:var(--green-950);color:rgba(255,255,255,.7);padding:80px 0 28px}
-  .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px}
+  footer{background:var(--green-950);color:rgba(255,255,255,.7);padding:56px 0 24px}
+  .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
   .f-col h5{font-size:13px;color:var(--yellow);text-transform:uppercase;letter-spacing:.12em;margin:0 0 18px}
   .f-col ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
   .f-col a:hover{color:var(--yellow-soft)}
@@ -511,8 +538,10 @@
   /* ----------- RESPONSIVE ----------- */
   @media (max-width:980px){
     .hero-grid,.about-grid,.app-grid,.c-grid{grid-template-columns:1fr}
-    .hero{padding:130px 0 80px}
-    .about-media{max-width:440px;margin:0 auto}
+    .hero{padding:120px 0 60px}
+    /* width:100% needed: .main/.sec have no intrinsic size (aspect-ratio
+       on empty divs), so grid + auto margins would collapse the item to 0. */
+    .about-media{width:100%;max-width:440px;margin:0 auto}
     .svc-grid,.team-grid,.q-grid{grid-template-columns:repeat(2,1fr)}
     .f-grid{grid-template-columns:1fr 1fr;gap:32px}
     .nav ul{display:none}
@@ -521,14 +550,17 @@
     .phone-wrap::before{width:320px;height:320px}
   }
   @media (max-width:620px){
-    section{padding:80px 0}
+    section{padding:56px 0}
     .wrap{padding:0 20px}
-    .svc-grid,.team-grid,.q-grid,.about-list,.about-stats,.contact-info,.form,.f-grid{grid-template-columns:1fr}
+    .svc-grid,.team-grid,.q-grid,.about-list,.contact-info,.form,.f-grid{grid-template-columns:1fr}
+    .about-stats{gap:10px;padding:18px 0}
+    .about-stats .s b{font-size:26px}
+    .about-stats .s span{font-size:11px;margin-top:4px}
     .hero-meta{gap:22px}
     .hero-meta .m b{font-size:26px}
     .c-card{padding:28px}
-    .nav-cta .btn-primary{display:none}
-    .phone-pill{display:none}
+    .phone-pill{padding:10px 14px;font-size:13px}
+    .phone-pill span{display:none}
     .f-bar{flex-direction:column;gap:10px}
 
     /* About decorations were sized for desktop grid gap; on mobile pull them
@@ -540,9 +572,11 @@
     /* 5 nowrap tabs don't fit in a 335px viewport pill — let them scroll
        horizontally inside the pill instead of breaking out of .wrap. */
     .price-toolbar{flex-direction:column;align-items:stretch;gap:14px}
+    .price-tabs-wrap{width:100%}
     .price-tabs{display:flex;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
     .price-tabs::-webkit-scrollbar{display:none}
     .price-tabs button{flex:0 0 auto}
+    .swipe-hint{display:flex}
   }
 
   /* reveal */
@@ -566,14 +600,14 @@
       <li><a href="#about">O nama</a></li>
       <li><a href="#pricing">Cjenovnik</a></li>
       <li><a href="#team">Doktori</a></li>
-      <li><a href="#contact">Kontakt</a></li>
+      <li><a href="#contact">Mapa</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="tel:+38733123456" class="phone-pill">
+      <a href="tel:+38762548846" class="phone-pill" aria-label="Pozovite +387 62 548 846">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg>
-        <span>+387 33 123 456</span>
+        <span>+387 62 548 846</span>
       </a>
-      <a href="#contact" class="btn btn-primary">Zakažite termin</a>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-drawer"><span></span></button>
     </div>
   </div>
@@ -587,27 +621,27 @@
       <span class="logo-mark">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 0-5 2-7 2s-3 2-3 5 1 6 3 9 3 4 4 4 1-2 2-5 2-3 3 0 1 5 2 5 3-1 4-4 2-6 2-9-1-5-3-5-3-2-7-2Z"/></svg>
       </span>
-      <span class="logo-text">Verde<span class="dot">.</span></span>
+      <span class="logo-text">Tarik-Dent Butković<span class="dot">.</span></span>
     </a>
     <button class="drawer-close" id="drawer-close" aria-label="Zatvori">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
-  <a href="tel:+38733123456" class="drawer-phone">
+  <a href="tel:+38762548846" class="drawer-phone">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg>
-    +387 33 123 456
+    +387 62 548 846
   </a>
   <ul class="drawer-nav">
     <li><a href="#services">Usluge</a></li>
     <li><a href="#about">O nama</a></li>
     <li><a href="#pricing">Cjenovnik</a></li>
     <li><a href="#team">Doktori</a></li>
-    <li><a href="#contact">Kontakt</a></li>
+    <li><a href="#contact">Mapa</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
   </ul>
   <div class="drawer-social">
-    <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-    <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.4-2 2.1-2H17V2.1C16.6 2 15.5 2 14.3 2 11.8 2 10 3.5 10 6.3V10H7v4h3v8h3Z"/></svg></a>
-    <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 7.3a6 6 0 0 1-4-1.4v8.5a6.2 6.2 0 1 1-5.3-6.1v3a3.2 3.2 0 1 0 2.3 3.1V2h3a5.9 5.9 0 0 0 4 4.4v.9Z"/></svg></a>
+    <a href="https://www.instagram.com/tarik.dent.butkovic/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+    <a href="https://www.facebook.com/TarikdentButkovic" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.4-2 2.1-2H17V2.1C16.6 2 15.5 2 14.3 2 11.8 2 10 3.5 10 6.3V10H7v4h3v8h3Z"/></svg></a>
   </div>
 </div>
 
@@ -617,11 +651,11 @@
   <svg class="leaf l2" viewBox="0 0 200 200" fill="none"><path d="M100 10c50 30 80 80 80 120s-40 60-80 60-80-20-80-60 30-90 80-120Z" stroke="rgba(143,194,164,.3)" stroke-width="1"/></svg>
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
-      <span class="eyebrow"><span class="pulse"></span> Primamo nove pacijente · Sarajevo, Centar</span>
+      <span class="eyebrow" id="status-badge"><span class="pulse"></span> <span data-status>Živinice, Centar</span></span>
       <h1 class="hero-title">Mirniji način<br/>za brigu o<br/><span class="accent">osmijehu.</span></h1>
-      <p class="hero-lede">Verde Dental je moderna ordinacija gdje se klinička izvrsnost spaja sa toplim i nenapornim iskustvom. Od redovnih kontrola do kompletne estetike — uradimo kako treba, iz prve.</p>
+      <p class="hero-lede">Tarik-Dent Butković je moderna ordinacija gdje se klinička izvrsnost spaja sa toplim i nenapornim iskustvom. Od redovnih kontrola do kompletne estetike — uradimo kako treba, iz prve.</p>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">
+        <a href="#kontakt" class="btn btn-primary">
           Zakažite termin
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
@@ -633,7 +667,7 @@
       <div class="hero-meta">
         <div class="m"><b>15+</b><span>godina iskustva</span></div>
         <div class="m"><b>Isti dan</b><span>hitni termini</span></div>
-        <div class="m"><b>6</b><span>specijalista</span></div>
+        <div class="m"><b>Bez stresa</b><span>opuštajuća atmosfera</span></div>
       </div>
     </div>
 
@@ -642,11 +676,11 @@
 
       <div class="float-card rating">
         <div class="av">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
         </div>
         <div class="meta">
-          <b>Otvoreno sada</b>
-          <span class="stars" style="color:var(--green-700);font-weight:600">do 20:00 · Sub 9–15</span>
+          <b>Hitni termini</b>
+          <span style="color:var(--green-700);font-weight:600">bol ne čeka — pozovite odmah</span>
         </div>
       </div>
 
@@ -671,7 +705,7 @@
         <span class="kicker">Šta radimo</span>
         <h2 class="section-title">Kompletna njega, <em>pod jednim krovom.</em></h2>
       </div>
-      <p class="section-sub">Od preventive do napredne estetike i ortodoncije — svaka disciplina u vlastitoj kući, uz specijaliste koji su se školovali zajedno.</p>
+      <p class="section-sub">Od preventive do napredne estetike i ortodoncije — svaka disciplina u vlastitoj kući,  uz pažljiv pristup i jasno objašnjen plan terapije.</p>
     </div>
     <div class="svc-grid">
       <!-- 6 services -->
@@ -684,7 +718,6 @@
           <h3>Preventiva i higijena</h3>
           <p>Redovne kontrole, ultrazvučno uklanjanje kamenca, airflow poliranje i fluoridna terapija — problemi se rješavaju prije nego što nastanu.</p>
         </div>
-        <div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
       </div>
 
       <div class="svc reveal">
@@ -693,10 +726,9 @@
           <span class="svc-num">02</span>
         </div>
         <div>
-          <h3>Parodontologija</h3>
-          <p>Laserski tretman zubnog mesa, dubinsko čišćenje parodontalnih džepova i kirurška regeneracija — da vaši zubi ostanu vaši.</p>
+          <h3>Oralna hirurgija</h3>
+          <p>Hirurška vađenja, apikotomije i resekcije — precizno, sa sedacijom i brzim oporavkom.</p>
         </div>
-        <div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
       </div>
 
       <div class="svc reveal">
@@ -708,7 +740,6 @@
           <h3>Estetska stomatologija</h3>
           <p>Porcelanske ljuspice, bondiranje i profesionalno izbjeljivanje — prilagođeno vašem licu, ne šablonu.</p>
         </div>
-        <div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
       </div>
 
       <div class="svc reveal">
@@ -720,7 +751,6 @@
           <h3>Ortodoncija</h3>
           <p>Invisalign® i moderne keramske bravice za tinejdžere i odrasle, planirano 3D skenerom — bez neugodnih otisaka.</p>
         </div>
-        <div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
       </div>
 
       <div class="svc reveal">
@@ -732,7 +762,6 @@
           <h3>Dječija stomatologija</h3>
           <p>Razigrano okruženje bez straha — gdje se djeca zaista raduju sljedećoj posjeti.</p>
         </div>
-        <div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
       </div>
 
       <div class="svc reveal">
@@ -744,7 +773,6 @@
           <h3>Hitni slučajevi</h3>
           <p>Termini isti dan za bol, frakture ili izgubljene nadogradnje — sedam dana u sedmici, i praznicima.</p>
         </div>
-        <div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
       </div>
     </div>
   </div>
@@ -759,9 +787,9 @@
       <div class="badge"><div><b>15</b>godina<br/>nežne brige</div></div>
     </div>
     <div class="about-body reveal">
-      <span class="kicker">O Verde Dentalu</span>
+      <span class="kicker">O Tarik-Dent Butković</span>
       <h2 class="section-title">Ordinacija koja <em>zaista</em> izgleda kao ona koju biste preporučili.</h2>
-      <p class="lede">Verde smo osnovali 2010. sa jednostavnom idejom: stomatologija ne mora biti hladna. Naš tim kombinuje evropski školovane specijaliste, njemački precizne uređaje i prostor osmišljen tako da hemijski sterilan osjećaj ostane pred vratima.</p>
+      <p class="lede">Tarik-Dent smo osnovali 2010. sa jednostavnom idejom: stomatologija ne mora biti hladna. Naš tim kombinuje evropski školovane specijaliste, njemački precizne uređaje i prostor osmišljen tako da hemijski sterilan osjećaj ostane pred vratima.</p>
       <div class="about-stats">
         <div class="s"><b>12k<span class="plus">+</span></b><span>pacijenata</span></div>
         <div class="s"><b>98<span class="plus">%</span></b><span>vratilo bi se</span></div>
@@ -771,9 +799,9 @@
         <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Digitalno 3D skeniranje — bez otisaka</li>
         <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Sedacija i stomatologija bez straha</li>
         <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Transparentne cijene unaprijed</li>
-        <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Krunice isti dan (CEREC)</li>
+        <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Krunice drugi dan nakon posjete (CEREC)</li>
         <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>5 godina garancije na radove</li>
-        <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Prihvatamo sva osiguranja</li>
+        <li><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Besplatan parking pored ordinacije</li>
       </ul>
       <a href="#team" class="btn btn-dark">Upoznajte tim
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -790,49 +818,105 @@
         <span class="kicker">Cjenovnik</span>
         <h2 class="section-title">Poštene cijene, <em>bez iznenađenja.</em></h2>
       </div>
-      <p class="section-sub">Sve cijene su u konvertibilnim markama (KM) i važe za jedan zub ili zahvat. Prvi pregled i plan terapije su besplatni.</p>
+      <p class="section-sub">Sve cijene su u konvertibilnim markama (KM) i važe za jedan zub ili zahvat. Pregled uključuje konsultaciju i plan terapije.</p>
     </div>
 
     <div class="price-toolbar reveal">
-      <div class="price-tabs" role="tablist">
-        <button class="on" data-cat="preventiva">Preventiva</button>
-        <button data-cat="estetika">Estetika</button>
-        <button data-cat="parodont">Parodontologija</button>
-        <button data-cat="ortodoncija">Ortodoncija</button>
-        <button data-cat="djeca">Djeca</button>
+      <div class="price-tabs-wrap">
+        <div class="price-tabs" role="tablist">
+          <button class="on" data-cat="preventiva">Preventiva</button>
+          <button data-cat="konzervativa">Plombe i endodoncija</button>
+          <button data-cat="hirurgija">Oralna hirurgija</button>
+          <button data-cat="estetika">Estetika</button>
+          <button data-cat="protetika">Protetika</button>
+          <button data-cat="djeca">Dječija</button>
+        </div>
+        <div class="swipe-hint" aria-hidden="true">
+          <img class="swipe-finger" src="pointer-removebg-preview.png" alt="" width="40" height="40">
+        </div>
       </div>
-      <div class="price-note"><span class="chip">– 10%</span> na prvu posjetu za nove pacijente</div>
     </div>
 
-    <!-- PREVENTIVA -->
+    <!-- PREGLEDI I PREVENTIVA -->
     <div class="price-grid" data-pane="preventiva">
       <div class="price-card show featured">
-        <span class="pc-featured-tag">Najpopularnije</span>
+        <span class="pc-featured-tag">Početak</span>
         <div class="pc-head">
           <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 0-5 2-7 2s-3 2-3 5 1 6 3 9 3 4 4 4 1-2 2-5 2-3 3 0 1 5 2 5 3-1 4-4 2-6 2-9-1-5-3-5-3-2-7-2Z"/></svg></div>
-          <div><h3>Pregled i higijena</h3><span class="sub">Za održavanje zdravog osmijeha</span></div>
+          <div><h3>Pregledi i dijagnostika</h3><span class="sub">Osnova svakog plana terapije</span></div>
         </div>
         <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Stomatološki pregled</b><span class="desc">Uključuje konsultaciju i plan terapije</span></div><div class="amt">0 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Uklanjanje kamenca (ultrazvuk)</b><span class="desc">Obje vilice</span></div><div class="amt">60 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Airflow poliranje</b><span class="desc">Uklanjanje mrlja od kafe, čaja, duhana</span></div><div class="amt">80 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Fluoridna terapija</b></div><div class="amt">40 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Digitalni RTG (pojedinačni)</b></div><div class="amt">20 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Panoramski snimak</b></div><div class="amt">60 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Stomatološki pregled</b><span class="desc">Uključuje konsultaciju i plan terapije</span></div><div class="amt">20 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Specijalistički pedodontski pregled</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Kontrola plaka bojenjem + plak indeks</b></div><div class="amt">40 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Snimanje jednog zuba (RVG)</b></div><div class="amt">10 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Kratki pregled djeteta sa poteškoćama u razvoju</b></div><div class="amt">30 <small>KM</small></div></div>
         </div>
       </div>
       <div class="price-card show">
         <div class="pc-head">
-          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z"/></svg></div>
-          <div><h3>Konzervativa</h3><span class="sub">Plombe i endodoncija</span></div>
+          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+          <div><h3>Higijena i čišćenje</h3><span class="sub">Skidanje kamenca, poliranje, fluoridacija</span></div>
         </div>
         <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Kompozitna plomba (mala)</b><span class="desc">Jedna površina</span></div><div class="amt">70 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Kompozitna plomba (srednja)</b><span class="desc">Dvije površine</span></div><div class="amt">100 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Kompozitna plomba (velika)</b><span class="desc">Tri površine ili više</span></div><div class="amt">140 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Endodontska terapija (jednokanalni)</b></div><div class="amt">160 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Endodontska terapija (višekanalni)</b></div><div class="amt">260 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Nadogradnja</b><span class="desc">Staklovlaknasti kolčić</span></div><div class="amt">120 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>ČZK + poliranje (jedna vilica)</b></div><div class="amt">30 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>ČZK + poliranje (obje vilice)</b></div><div class="amt">60 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>ČZK + pjeskarenje</b></div><div class="amt">80 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Poliranje obje vilice</b></div><div class="amt">30 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Fluorizacija obje vilice (odrasli)</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Subgingivalna kiretaža (po zubu)</b></div><div class="amt">40 <small>KM</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KONZERVATIVA -->
+    <div class="price-grid" data-pane="konzervativa" style="display:none">
+      <div class="price-card show featured">
+        <span class="pc-featured-tag">Najčešće</span>
+        <div class="pc-head">
+          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z"/></svg></div>
+          <div><h3>Plombe i restauracije</h3><span class="sub">Kompozitne plombe, nadogradnje, prekrivanje pulpe</span></div>
+        </div>
+        <div class="pc-list">
+          <div class="pc-row"><div class="name"><b>Jednopovršinska plomba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Dvopovršinska plomba</b></div><div class="amt">70 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Višepovršinska plomba</b></div><div class="amt">80 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>IPP — indirektno prekrivanje pulpe + plomba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>DPP — direktno prekrivanje pulpe + plomba (ZnOEg)</b></div><div class="amt">80 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Kompozitna nadogradnja zuba sa kočićem</b></div><div class="amt">100 <small>KM</small></div></div>
+        </div>
+      </div>
+      <div class="price-card show">
+        <div class="pc-head">
+          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 2 7 5 7 10 0 4-3 8-7 8s-7-4-7-8c0-5 3-8 7-10Z"/></svg></div>
+          <div><h3>Endodoncija i pomoćni zahvati</h3><span class="sub">Lječenje kanala, kočići, manji intraoralni zahvati</span></div>
+        </div>
+        <div class="pc-list">
+          <div class="pc-row"><div class="name"><b>Lječenje jednokorijenog zuba</b></div><div class="amt">120 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Lječenje dvokorijenog zuba</b></div><div class="amt">150 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Lječenje višekorijenog zuba</b></div><div class="amt">180 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Trepanacija stalnog zuba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Zavoj CaOH</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Incizija</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Ugradnja fiber glass kočića</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Ugradnja konfekcijskog kočića</b></div><div class="amt">50 <small>KM</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORALNA HIRURGIJA -->
+    <div class="price-grid" data-pane="hirurgija" style="display:none">
+      <div class="price-card show featured">
+        <span class="pc-featured-tag">Hirurgija</span>
+        <div class="pc-head">
+          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c2-6 6-9 8-9s6 3 8 9-2 9-8 9-10-3-8-9Z"/><path d="M8 12h8"/></svg></div>
+          <div><h3>Vađenje zuba</h3><span class="sub">Jednostavna i komplikovana ekstrakcija, uz anesteziju</span></div>
+        </div>
+        <div class="pc-list">
+          <div class="pc-row"><div class="name"><b>Ekstrakcija (vađenje) jednokorijenog stalnog zuba</b></div><div class="amt">40 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Ekstrakcija (vađenje) dvokorijenog stalnog zuba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Ekstrakcija (vađenje) višekorijenog stalnog zuba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Komplikovano vađenje zuba</b><span class="desc">Hirurško, sa šavom</span></div><div class="amt">100 <small>KM</small></div></div>
         </div>
       </div>
     </div>
@@ -843,134 +927,74 @@
         <span class="pc-featured-tag">Hit</span>
         <div class="pc-head">
           <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
-          <div><h3>Izbjeljivanje i bondiranje</h3><span class="sub">Brzi rezultati, sigurno za glazuru</span></div>
+          <div><h3>Estetski tretmani</h3><span class="sub">Izbjeljivanje i sitni estetski detalji</span></div>
         </div>
         <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Profesionalno izbjeljivanje (ordinacija)</b><span class="desc">Jedna posjeta, rezultat odmah</span></div><div class="amt">450 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Izbjeljivanje sa šinama (kućno)</b><span class="desc">Izrada šina + gel za 2 sedmice</span></div><div class="amt">320 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Kombinovano izbjeljivanje</b></div><div class="amt">650 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Estetsko bondiranje (po zubu)</b><span class="desc">Korekcija oblika i boje</span></div><div class="amt">180 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Zubni nakit (dijamant)</b></div><div class="amt">80 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Izbjeljivanje zuba (po članu)</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Profesionalno izbjeljivanje zuba — FLASH</b><span class="desc">Brzi rezultat u ordinaciji</span></div><div class="amt">300 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Cirkon — ukras na zubu</b></div><div class="amt">50 <small>KM</small></div></div>
         </div>
       </div>
-      <div class="price-card show">
+    </div>
+
+    <!-- PROTETIKA -->
+    <div class="price-grid" data-pane="protetika" style="display:none">
+      <div class="price-card show featured">
+        <span class="pc-featured-tag">Trajno rješenje</span>
         <div class="pc-head">
           <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c2-6 6-9 8-9s6 3 8 9-2 9-8 9-10-3-8-9Z"/></svg></div>
-          <div><h3>Krunice i ljuspice</h3><span class="sub">Porcelanske i cirkonske restauracije</span></div>
+          <div><h3>Krunice i proteze</h3><span class="sub">Fiksna i mobilna protetika</span></div>
         </div>
         <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Porcelanska ljuspica (veneer)</b><span class="desc">Po zubu · 5 god. garancije</span></div><div class="amt">850 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>E-max ljuspica</b><span class="desc">Premium litij-disilikatna keramika</span></div><div class="amt">1.100 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Cirkonska krunica</b><span class="desc">Biokompatibilna, bez metala</span></div><div class="amt">750 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Metal-keramika krunica</b></div><div class="amt">450 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>CEREC krunica (isti dan)</b><span class="desc">Skeniranje, izrada i ugradnja u 2h</span></div><div class="amt">900 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Hollywood osmijeh (10 ljuspica)</b></div><div class="amt">7.500 <small>KM</small></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PARODONTOLOGIJA -->
-    <div class="price-grid" data-pane="parodont" style="display:none">
-      <div class="price-card show featured">
-        <span class="pc-featured-tag">Preporučeno</span>
-        <div class="pc-head">
-          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 2 7 5 7 10 0 4-3 8-7 8s-7-4-7-8c0-5 3-8 7-10Z"/><path d="M9 13c1 1 2 1.5 3 1.5s2-.5 3-1.5"/></svg></div>
-          <div><h3>Njega zubnog mesa</h3><span class="sub">Dijagnostika, čišćenje, laser</span></div>
-        </div>
-        <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Parodontološki pregled + plan</b><span class="desc">Mjerenje džepova, foto-dijagnostika</span></div><div class="amt">60 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Dubinsko čišćenje (po kvadrantu)</b><span class="desc">Scaling &amp; root planing</span></div><div class="amt">120 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Laserska dekontaminacija</b><span class="desc">Po kvadrantu, bez bola</span></div><div class="amt">180 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Kiretaža parodontalnog džepa</b></div><div class="amt">90 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Splint za rasklimane zube</b><span class="desc">Stakleno-vlaknasta stabilizacija</span></div><div class="amt">250 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Održavanje (svakih 3–6 mj.)</b></div><div class="amt">80 <small>KM</small></div></div>
-        </div>
-      </div>
-      <div class="price-card show">
-        <div class="pc-head">
-          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c2-6 6-9 8-9s6 3 8 9-2 9-8 9-10-3-8-9Z"/><path d="M8 12h8"/></svg></div>
-          <div><h3>Oralna kirurgija</h3><span class="sub">Ekstrakcije i mekotkivni zahvati</span></div>
-        </div>
-        <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Gingivektomija (po zubu)</b><span class="desc">Korekcija linije desni</span></div><div class="amt">150 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Gingivoplastika (estetska)</b><span class="desc">Do 6 zuba, laser</span></div><div class="amt">600 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Apikotomija</b><span class="desc">Rezekcija vrha korijena</span></div><div class="amt">350 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Uklanjanje cističnih lezija</b></div><div class="amt">400 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Frenektomija</b><span class="desc">Uklanjanje frenuluma, laser</span></div><div class="amt">250 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Sedacija tokom zahvata</b><span class="desc">Inhalacijska analgezija</span></div><div class="amt">150 <small>KM</small></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ORTODONCIJA -->
-    <div class="price-grid" data-pane="ortodoncija" style="display:none">
-      <div class="price-card show featured">
-        <span class="pc-featured-tag">Nevidljivo</span>
-        <div class="pc-head">
-          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7M9 7V4h6v3"/></svg></div>
-          <div><h3>Invisalign® i folije</h3><span class="sub">Ispravljanje zuba bez bravica</span></div>
-        </div>
-        <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Konsultacija + 3D plan</b></div><div class="amt">150 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Invisalign Express (do 7 folija)</b><span class="desc">Blaga korekcija, 3–6 mjeseci</span></div><div class="amt">3.500 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Invisalign Lite (do 14 folija)</b></div><div class="amt">5.500 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Invisalign Comprehensive</b><span class="desc">Neograničene folije, kompleksni slučajevi</span></div><div class="amt">8.500 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Retajneri (par)</b></div><div class="amt">400 <small>KM</small></div></div>
-        </div>
-      </div>
-      <div class="price-card show">
-        <div class="pc-head">
-          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M6 8h12M6 16h12"/></svg></div>
-          <div><h3>Fiksne bravice</h3><span class="sub">Metalne, keramičke, safirne</span></div>
-        </div>
-        <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Metalne bravice (obje vilice)</b><span class="desc">Uključuje sve kontrole</span></div><div class="amt">2.800 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Keramičke bravice</b><span class="desc">Bijele, diskretne</span></div><div class="amt">3.800 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Safirne bravice</b><span class="desc">Transparentne, najdiskretnije</span></div><div class="amt">4.500 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Samoligirajuće bravice (Damon)</b></div><div class="amt">4.200 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Mjesečna kontrola</b></div><div class="amt">60 <small>KM</small></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DJECA -->
-    <div class="price-grid" data-pane="djeca" style="display:none">
-      <div class="price-card show featured">
-        <span class="pc-featured-tag">Bez straha</span>
-        <div class="pc-head">
-          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
-          <div><h3>Dječija stomatologija</h3><span class="sub">Za uzrast do 14 godina</span></div>
-        </div>
-        <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Prvi pregled i upoznavanje</b><span class="desc">Bez tretmana, igra + edukacija</span></div><div class="amt">0 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Pregled + fluoridacija</b></div><div class="amt">50 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Zalivanje fisura (po zubu)</b><span class="desc">Preventiva karijesa</span></div><div class="amt">40 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Plomba na mliječnom zubu</b></div><div class="amt">60 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Vađenje mliječnog zuba</b></div><div class="amt">40 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Ortodontska ploča (pokretna)</b></div><div class="amt">600 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Metal-keramička kruna</b></div><div class="amt">200 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Zirkon (bezmetalna kruna)</b><span class="desc">Biokompatibilno, prirodan izgled</span></div><div class="amt">350 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Totalna proteza</b></div><div class="amt">300 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Parcijalna proteza</b></div><div class="amt">300 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Parcijalna proteza s atečmenima</b><span class="desc">Kombinovani rad</span></div><div class="amt">900 <small>KM</small></div></div>
         </div>
       </div>
       <div class="price-card show">
         <div class="pc-head">
           <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z"/></svg></div>
-          <div><h3>Hitni slučajevi</h3><span class="sub">Bol, frakture, traume</span></div>
+          <div><h3>Popravke i pomagala</h3><span class="sub">Dorada, reparatura, udlage</span></div>
         </div>
         <div class="pc-list">
-          <div class="pc-row"><div class="name"><b>Hitni pregled (isti dan)</b></div><div class="amt">80 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Nedjeljni / praznični pregled</b></div><div class="amt">120 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Vađenje zuba (jednostavno)</b></div><div class="amt">100 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Vađenje zuba (komplikovano)</b><span class="desc">Hirurško, sa šavom</span></div><div class="amt">200 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Vađenje umnjaka</b></div><div class="amt">300 <small>KM</small></div></div>
-          <div class="pc-row"><div class="name"><b>Zaustavljanje krvarenja / privremena plomba</b></div><div class="amt">60 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Dodatak zuba na protezu</b></div><div class="amt">40 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Reparatura proteze</b></div><div class="amt">30 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Udlage protiv bruksizma i retineri, čuvari prostora</b></div><div class="amt">150 <small>KM</small></div></div>
         </div>
       </div>
     </div>
 
-    <div class="price-footer reveal">
-      <p><b>Plaćanje na rate bez kamate.</b> Za zahvate preko 1.000 KM nudimo plaćanje do 12 rata, u saradnji s domaćim bankama. Sva osiguranja su dobrodošla.</p>
-      <a href="#contact" class="btn btn-dark">Zatražite ponudu
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+    <!-- DJEČIJA STOMATOLOGIJA -->
+    <div class="price-grid" data-pane="djeca" style="display:none">
+      <div class="price-card show featured">
+        <span class="pc-featured-tag">Bez straha</span>
+        <div class="pc-head">
+          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+          <div><h3>Mliječna denticija — tretmani</h3><span class="sub">Pregledi, plombe i lječenje kanala kod djece</span></div>
+        </div>
+        <div class="pc-list">
+          <div class="pc-row"><div class="name"><b>Popravka jednokorijenog mliječnog zuba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Popravka višekorijenog mliječnog zuba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Lječenje jednokorijenog mliječnog zuba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Lječenje višekorijenog mliječnog zuba</b></div><div class="amt">60 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Trepanacija mliječnog zuba</b></div><div class="amt">30 <small>KM</small></div></div>
+        </div>
+      </div>
+      <div class="price-card show">
+        <div class="pc-head">
+          <div class="pc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4 12H2M22 12h-2M6 6 4 4M20 20l-2-2M6 18l-2 2M20 4l-2 2"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <div><h3>Preventiva i vađenja kod djece</h3><span class="sub">Zaštita zuba i sitni hirurški zahvati</span></div>
+        </div>
+        <div class="pc-list">
+          <div class="pc-row"><div class="name"><b>Fluorizacija obje vilice (djeca)</b></div><div class="amt">40 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Zalivanje fisura</b><span class="desc">Preventiva karijesa</span></div><div class="amt">25 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Vađenje jednokorijenog mliječnog zuba</b></div><div class="amt">30 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Vađenje višekorijenog mliječnog zuba</b></div><div class="amt">50 <small>KM</small></div></div>
+          <div class="pc-row"><div class="name"><b>Traume u mliječnoj denticiji (po dolasku)</b></div><div class="amt">50 <small>KM</small></div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -983,7 +1007,7 @@
         <span class="kicker">Naši doktori</span>
         <h2 class="section-title">Specijalisti koji <em>zaista slušaju.</em></h2>
       </div>
-      <p class="section-sub">Šest doktora u šest disciplina — tako da vas za jedan plan terapije niko ne šalje iz ordinacije u ordinaciju.</p>
+      <p class="section-sub">Stručan tim koji vam objašnjava svaku odluku i prati vas dugoročno — bez žurbe i bez improvizacije.</p>
     </div>
     <div class="team-grid">
       <div class="doc reveal">
@@ -1016,79 +1040,24 @@
     <div class="section-head reveal">
       <div>
         <span class="kicker">Posjetite nas</span>
-        <h2 class="section-title">Dva minuta od <em>Baščaršije.</em></h2>
+        <h2 class="section-title">Preko puta <em>Mješovite srednje škole.</em></h2>
       </div>
-      <p class="section-sub">Ulaz iz ulice, potpuno pristupačno. Parking u obližnjoj garaži se validira.</p>
+      <p class="section-sub">Ulaz iz ulice, potpuno pristupačno. Besplatan parking sa dovoljno mjesta odmah pored ordinacije.</p>
     </div>
 
     <div class="c-grid">
       <div class="map reveal">
         <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=18.418%2C43.854%2C18.438%2C43.866&layer=mapnik&marker=43.8600%2C18.4280"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="map-pin">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-12a7 7 0 0 1 14 0c0 5.7-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5" fill="currentColor"/></svg>
-          <div>Verde Dental · <b>Ferhadija 12, Sarajevo</b></div>
-        </div>
+          src="https://maps.google.com/maps?cid=7040102281188151233&hl=bs&z=19&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
       </div>
-
-<!--      <div class="c-card reveal">-->
-<!--        <span class="kicker" style="color:var(&#45;&#45;yellow-soft)">Zakažite termin</span>-->
-<!--        <h3>Recite nam o vašem <em>osmijehu</em> — javljamo se u roku od sat vremena.</h3>-->
-
-<!--        <form class="form" onsubmit="event.preventDefault();this.querySelector('.submit').innerHTML='✓ Hvala — javljamo se uskoro'">-->
-<!--          <div class="field"><label>Ime i prezime</label><input type="text" placeholder="Amina Muminović" required></div>-->
-<!--          <div class="field"><label>Telefon</label><input type="tel" placeholder="+387 61 …" required></div>-->
-<!--          <div class="field full"><label>Email</label><input type="email" placeholder="amina@email.com" required></div>-->
-<!--          <div class="field"><label>Usluga</label>-->
-<!--            <select>-->
-<!--              <option>Pregled i čišćenje</option>-->
-<!--              <option>Izbjeljivanje</option>-->
-<!--              <option>Parodontologija / laser</option>-->
-<!--              <option>Invisalign</option>-->
-<!--              <option>Hitan slučaj</option>-->
-<!--              <option>Ostalo</option>-->
-<!--            </select>-->
-<!--          </div>-->
-<!--          <div class="field"><label>Željeni dan</label>-->
-<!--            <select>-->
-<!--              <option>Što prije</option>-->
-<!--              <option>Ove sedmice</option>-->
-<!--              <option>Sljedeće sedmice</option>-->
-<!--              <option>Samo se raspitujem</option>-->
-<!--            </select>-->
-<!--          </div>-->
-<!--          <div class="field full"><label>Napomena</label><textarea placeholder="Nivo bola, strah, osiguranje…"></textarea></div>-->
-<!--          <button class="btn btn-primary submit full" type="submit">Zatraži termin-->
-<!--            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>-->
-<!--          </button>-->
-<!--        </form>-->
-
-<!--        <div class="contact-info">-->
-<!--          <div class="ci">-->
-<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg></div>-->
-<!--            <div><b>+387 33 123 456</b>Pon–Sub · 8:00 – 20:00</div>-->
-<!--          </div>-->
-<!--          <div class="ci">-->
-<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></div>-->
-<!--            <div><b>info@verde-dental.ba</b>Odgovor u roku od sat vremena</div>-->
-<!--          </div>-->
-<!--          <div class="ci">-->
-<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-12a7 7 0 0 1 14 0c0 5.7-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>-->
-<!--            <div><b>Ferhadija 12 · Sarajevo</b>2 minute od Baščaršije</div>-->
-<!--          </div>-->
-<!--          <div class="ci">-->
-<!--            <div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 2"/></svg></div>-->
-<!--            <div><b>Nedjelja hitno: 10–14</b>Prvo nazovite glavni broj</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
   </div>
 </section>
 
 <!-- =================== FOOTER =================== -->
-<footer>
+<footer id="kontakt">
   <div class="wrap">
     <div class="f-grid">
       <div class="f-about">
@@ -1096,45 +1065,31 @@
           <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 0-5 2-7 2s-3 2-3 5 1 6 3 9 3 4 4 4 1-2 2-5 2-3 3 0 1 5 2 5 3-1 4-4 2-6 2-9-1-5-3-5-3-2-7-2Z"/></svg></span>
           <span class="logo-text">Verde<span class="dot">.</span></span>
         </div>
-        <p>Moderna stomatološka ordinacija u srcu Sarajeva. Klinička izvrsnost, poštene cijene, nenaporna njega.</p>
+        <p>Moderna stomatološka ordinacija u srcu Živinica. Klinička izvrsnost, poštene cijene, nenaporna njega.</p>
         <div class="socials">
-          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.4-2 2.1-2H17V2.1C16.6 2 15.5 2 14.3 2 11.8 2 10 3.5 10 6.3V10H7v4h3v8h3Z"/></svg></a>
-          <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 7.3a6 6 0 0 1-4-1.4v8.5a6.2 6.2 0 1 1-5.3-6.1v3a3.2 3.2 0 1 0 2.3 3.1V2h3a5.9 5.9 0 0 0 4 4.4v.9Z"/></svg></a>
+          <a href="https://www.instagram.com/tarik.dent.butkovic/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/TarikdentButkovic" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.4-2 2.1-2H17V2.1C16.6 2 15.5 2 14.3 2 11.8 2 10 3.5 10 6.3V10H7v4h3v8h3Z"/></svg></a>
         </div>
       </div>
       <div class="f-col">
-        <h5>Ordinacija</h5>
+        <h5>Radno vrijeme</h5>
         <ul>
-          <li><a href="#services">Usluge</a></li>
-          <li><a href="#about">O nama</a></li>
-          <li><a href="#pricing">Cjenovnik</a></li>
-          <li><a href="#team">Doktori</a></li>
-          <li><a href="#contact">Kontakt</a></li>
+          <li>Ponedjeljak: 8:00–16:30</li>
+          <li>Utorak: 8:00–16:30</li>
+          <li>Srijeda: 11:00–19:30</li>
+          <li>Četvrtak: 11:00–19:30</li>
+          <li>Petak: 8:00–16:30</li>
+          <li>Subota i Nedjelja: zatvoreno</li>
         </ul>
       </div>
       <div class="f-col">
         <h5>Posjetite</h5>
         <ul>
-          <li>Ferhadija 12, Sarajevo</li>
-          <li>+387 33 123 456</li>
-          <li>info@verde-dental.ba</li>
-          <li>Pon–Sub 8:00–20:00</li>
+          <li>Meše Selimovića 13, Živinice</li>
+          <li>+387 62 548 846</li>
+          <li>butkovicaidaa@gmail.com</li>
         </ul>
       </div>
-      <div class="f-col">
-        <h5>Pravno</h5>
-        <ul>
-          <li><a href="#">Impresum</a></li>
-          <li><a href="#">Privatnost</a></li>
-          <li><a href="#">Kolačići</a></li>
-          <li><a href="#">Uslovi korištenja</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="f-bar">
-      <span>© 2026 Verde Dental Ordinacija · Sačinjeno s pažnjom u Sarajevu</span>
-      <span>Certifikovano · GDPR usklađeno</span>
     </div>
   </div>
 </footer>
@@ -1163,6 +1118,21 @@
     });
   });
 
+  // Swipe hint for mobile price tabs — hide when user has scrolled to the end
+  // (or when the tabs fit without overflow).
+  const priceTabsEl = document.querySelector('.price-tabs');
+  const swipeHintEl = document.querySelector('.swipe-hint');
+  if (priceTabsEl && swipeHintEl) {
+    const checkSwipeHint = () => {
+      const maxScroll = priceTabsEl.scrollWidth - priceTabsEl.clientWidth;
+      const atEnd = priceTabsEl.scrollLeft >= maxScroll - 4;
+      swipeHintEl.classList.toggle('hide', maxScroll <= 2 || atEnd);
+    };
+    priceTabsEl.addEventListener('scroll', checkSwipeHint, {passive:true});
+    window.addEventListener('resize', checkSwipeHint);
+    checkSwipeHint();
+  }
+
   // Mobile drawer
   const burger    = document.getElementById('burger');
   const drawer    = document.getElementById('mobile-drawer');
@@ -1188,6 +1158,70 @@
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape' && document.body.classList.contains('drawer-open')) closeDrawer();
   });
+</script>
+
+<script>
+  // Live "Otvoreno / Zatvoreno" status u Europe/Sarajevo timezoni.
+  // Forsiramo timezonu da bi tačno radilo i za posjetioce iz drugih zemalja.
+  (function(){
+    const SCHEDULE = {
+      1: [[8,0],[16,30]],   // Ponedjeljak
+      2: [[8,0],[16,30]],   // Utorak
+      3: [[11,0],[19,30]],  // Srijeda
+      4: [[11,0],[19,30]],  // Četvrtak
+      5: [[8,0],[16,30]],   // Petak
+      6: null,              // Subota
+      0: null               // Nedjelja
+    };
+    // Akuzativ za "u + dan": u ponedjeljak, u srijedu, u subotu...
+    const DAY_ACC = ['nedjelju','ponedjeljak','utorak','srijedu','četvrtak','petak','subotu'];
+    const WD = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+
+    function sarajevoNow(){
+      const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone:'Europe/Sarajevo', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false
+      }).formatToParts(new Date());
+      const g = t => parts.find(p => p.type === t).value;
+      return { day: WD[g('weekday')], mins: parseInt(g('hour'),10)*60 + parseInt(g('minute'),10) };
+    }
+
+    function fmt(h,m){ return h + ':' + String(m).padStart(2,'0'); }
+
+    function compute(){
+      const {day, mins} = sarajevoNow();
+      const today = SCHEDULE[day];
+      if (today) {
+        const openM  = today[0][0]*60 + today[0][1];
+        const closeM = today[1][0]*60 + today[1][1];
+        if (mins >= openM && mins < closeM) {
+          return { open:true,  text:'Otvoreno · zatvaramo u ' + fmt(today[1][0],today[1][1]) + ' · Živinice, Centar' };
+        }
+        if (mins < openM) {
+          return { open:false, text:'Zatvoreno · otvaramo u ' + DAY_ACC[day] + ' u ' + fmt(today[0][0],today[0][1]) };
+        }
+      }
+      for (let i = 1; i <= 7; i++) {
+        const d = (day + i) % 7;
+        if (SCHEDULE[d]) {
+          const t = fmt(SCHEDULE[d][0][0], SCHEDULE[d][0][1]);
+          return { open:false, text:'Zatvoreno · otvaramo u ' + DAY_ACC[d] + ' u ' + t };
+        }
+      }
+      return { open:false, text:'Zatvoreno' };
+    }
+
+    function render(){
+      const badge = document.getElementById('status-badge');
+      const text  = badge && badge.querySelector('[data-status]');
+      if (!badge || !text) return;
+      const s = compute();
+      text.textContent = s.text;
+      badge.classList.toggle('is-closed', !s.open);
+    }
+
+    render();
+    setInterval(render, 60 * 1000);
+  })();
 </script>
 </body>
 </html>
