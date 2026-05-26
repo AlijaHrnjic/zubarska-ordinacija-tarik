@@ -1,0 +1,6 @@
+# robots.txt — Tarik-Dent Butković
+User-agent: *
+Allow: /
+
+# Glavni sitemap
+Sitemap: https://tarikdent.ba/sitemap.xml
